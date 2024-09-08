@@ -1,0 +1,68 @@
+RGB = imread("images/toysflash.png");
+%imtool(RGB);
+%colorcloud(RGB, "rgb");
+%colorcloud(RGB, "hsv");
+%colorcloud(RGB, "ycbcr");
+%colorcloud(RGB, "lab");
+
+function [R,G,B] = split(image)
+    [R,G,B] = imsplit(image);
+end
+
+function show(R,G,B)
+    subplot(1,3,1)
+    imshow(R)
+    title('Red Channel')
+    
+    subplot(1,3,2)
+    imshow(G)
+    title('Green Channel')
+    
+    subplot(1,3,3)
+    imshow(B)
+    title('Blue Channel')
+end
+
+[R,G,B] = split(RGB);
+level_R = graythresh(R);
+level_G = graythresh(G);
+level_B = graythresh(B);
+BW_R = imbinarize(R,level_R);
+BW_G = imbinarize(G,level_G);
+BW_B = imbinarize(B,level_B);
+
+HSV = rgb2hsv(RGB);
+
+[H,S,V] = split(HSV);
+level_H = graythresh(H);
+level_S = graythresh(S);
+level_V = graythresh(V);
+BW_H = imbinarize(H,level_H);
+BW_S = imbinarize(S,level_S);
+BW_V = imbinarize(V,level_V);
+
+subplot(2,3,1)
+imshow(BW_R)
+title('Red Channel')
+    
+subplot(2,3,2)
+imshow(BW_G)
+title('Green Channel')
+    
+subplot(2,3,3)
+imshow(BW_B)
+title('Blue Channel')
+
+subplot(2,3,4)
+imshow(BW_H)
+title('Hue Channel')
+    
+subplot(2,3,5)
+imshow(BW_S)
+title('Saturation Channel')
+    
+subplot(2,3,6)
+imshow(BW_V)
+title('Value Channel')
+
+colorseg_SV(HSV);
