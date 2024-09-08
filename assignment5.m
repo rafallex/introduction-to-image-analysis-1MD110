@@ -42,3 +42,5 @@ filtered_image = filter(resized, 5);
 imtool(filtered_image);
 sub_image = resized - filtered_image;
 imtool(sub_image);
+
+%Test
