@@ -18,9 +18,11 @@ These are the loose scripts at the repo root. Most of them run on the toy images
 
 **`assignment5.m`** — grayscale conversion, centre-crop to a square, resize to 128×128, then a hand-written mean (box) filter with a sliding window. Subtracting the blurred image from the original gives a simple high-pass / sharpening result.
 
-**`assignmentv2.m` and `IterativeTresh.m`** — iterative global thresholding. Starts from a guess, splits pixels into two groups by the current threshold, and sets the new threshold to the mean of the two group means until it converges. This is k-means with two clusters; `IterativeTresh.m` is the clean standalone version.
+**`IterativeTresh.m`** — iterative global thresholding. Starts from a guess, splits pixels into two groups by the current threshold, and sets the new threshold to the mean of the two group means until it converges. This is k-means with two clusters; it's the clean standalone version.
 
-The `.fig` files (`best_segmentation_*`) are saved figures of the best colour-segmentation results for the toys and cup images.
+**`assignmentv2.m`** — the longer thresholding script. It runs the same iterative threshold on `rice.png`, then implements Otsu's method from scratch (sweeping every threshold and maximising the between-class variance) and plots that variance curve. The from-scratch threshold is then checked against MATLAB's built-in `graythresh` on `hand2BW.png`, with both binarised results shown side by side. The `graythresh` value is in [0, 1], so it's scaled back to [0, 255] before the comparison. Line 117 reads `hand2BW.png` from an absolute path left over from my machine — point it at `images/hand2BW.png` in this repo to run it.
+
+The `.fig` files (`best_segmentation_*`) are saved MATLAB figures of the best colour-segmentation results for the toys and cup images — open them with `openfig` to see the overlays.
 
 ## Lab 4 — Registration and motion tracking
 
@@ -42,3 +44,11 @@ Open the repo in MATLAB with the Image Processing and Computer Vision toolboxes 
 T = intensity_based_registration_mono('lab4-image-registration/data', ...
         'z1f.png', 'z1m.png', 'z1f.csv', 'z1m.csv');
 ```
+
+Each registration function prints the mean landmark distance before and after registration, so you can read off how much each method closed the gap, and shows the before/after fused overlays. The data folder pairs a fixed image (`*f.png`) with a moving one (`*m.png`) and their landmark CSVs; the `b*` set is the brain images and the `z*` set the others, with `*lab*` variants for the multimodal case.
+
+## What's mine vs. course-provided
+
+The assignment solutions are my own: the histogram flattening, the channel/Otsu segmentation, the spatial filter, the iterative and from-scratch Otsu thresholding, and the choices and tuning in the lab 4 registration functions. The lab 1 instructions PDF, the registration data set, `plot_image_and_points.m`, and the `VideoUtilities.m` tracking skeleton came with the course.
+
+The MIT license covers the code I wrote. The course-provided instructions PDF, data, and skeleton files stay under their original terms.
