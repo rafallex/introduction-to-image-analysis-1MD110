@@ -114,7 +114,7 @@ disp(['Otsu Method Threshold: ', num2str(otsu_thresh)]);
 
 %comparison ....
 
-I2 = imread('C:\Users\Filhos\Desktop\Uppsala\Image analysis\Lab1_Complete_material\images\hand2BW.png');
+I2 = imread('images/hand2BW.png');
 
 
 
