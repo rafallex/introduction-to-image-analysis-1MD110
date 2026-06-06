@@ -20,7 +20,7 @@ These are the loose scripts at the repo root. Most of them run on the toy images
 
 **`IterativeTresh.m`** — iterative global thresholding. Starts from a guess, splits pixels into two groups by the current threshold, and sets the new threshold to the mean of the two group means until it converges. This is k-means with two clusters; it's the clean standalone version.
 
-**`assignmentv2.m`** — the longer thresholding script. It runs the same iterative threshold on `rice.png`, then implements Otsu's method from scratch (sweeping every threshold and maximising the between-class variance) and plots that variance curve. The from-scratch threshold is then checked against MATLAB's built-in `graythresh` on `hand2BW.png`, with both binarised results shown side by side. The `graythresh` value is in [0, 1], so it's scaled back to [0, 255] before the comparison. Line 117 reads `hand2BW.png` from an absolute path left over from my machine — point it at `images/hand2BW.png` in this repo to run it.
+**`assignmentv2.m`** — the longer thresholding script. It runs the same iterative threshold on `rice.png`, then implements Otsu's method from scratch (sweeping every threshold and maximising the between-class variance) and plots that variance curve. The from-scratch threshold is then checked against MATLAB's built-in `graythresh` on `hand2BW.png`, with both binarised results shown side by side. The `graythresh` value is in [0, 1], so it's scaled back to [0, 255] before the comparison. It reads `hand2BW.png` from `images/` in this repo.
 
 The `.fig` files (`best_segmentation_*`) are saved MATLAB figures of the best colour-segmentation results for the toys and cup images — open them with `openfig` to see the overlays.
 
