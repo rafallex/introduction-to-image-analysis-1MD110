@@ -2,7 +2,7 @@
 
 Coursework from **1MD110 Introduction to Image Analysis** (period 1, year 1) of the M.Sc. in Image Analysis and Machine Learning at Uppsala University.
 
-The course covered classical image analysis: point operations and histograms, thresholding and segmentation, spatial filtering, multispectral imagery, and image registration. Everything here is MATLAB, using the Image Processing and Computer Vision toolboxes. The lab 1 problem statement is included as `Intro2IA_Lab1_Instructions.pdf`.
+The course covered classical image analysis: point operations and histograms, thresholding and segmentation, spatial filtering, multispectral imagery, and image registration. Everything here is MATLAB, using the Image Processing and Computer Vision toolboxes.
 
 ## Assignments
 
@@ -22,8 +22,6 @@ These are the loose scripts at the repo root. Most of them run on the toy images
 
 **`assignmentv2.m`** — the longer thresholding script. It runs the same iterative threshold on `rice.png`, then implements Otsu's method from scratch (sweeping every threshold and maximising the between-class variance) and plots that variance curve. The from-scratch threshold is then checked against MATLAB's built-in `graythresh` on `hand2BW.png`, with both binarised results shown side by side. The `graythresh` value is in [0, 1], so it's scaled back to [0, 255] before the comparison. It reads `hand2BW.png` from `images/` in this repo.
 
-The `.fig` files (`best_segmentation_*`) are saved MATLAB figures of the best colour-segmentation results for the toys and cup images — open them with `openfig` to see the overlays.
-
 ## Lab 4 — Registration and motion tracking
 
 `lab4-image-registration/` aligns a moving image to a fixed one with a rigid transform, and scores each method by the mean landmark distance before and after registration (landmarks are in the `*.csv` files alongside the images in `data/`). Three approaches:
@@ -34,7 +32,7 @@ The `.fig` files (`best_segmentation_*`) are saved MATLAB figures of the best co
 
 `plot_image_and_points.m` is the shared helper for overlaying landmark points (including ones that fall outside the image).
 
-`lab4-motion-tracking/` holds `VideoUtilities.m`, the frame-by-frame skeleton for reading a video, annotating tracked positions, and writing the result back out, plus the source sequence and a binary mask to work from.
+`lab4-motion-tracking/` holds `VideoUtilities.m`, the frame-by-frame skeleton for reading a video, annotating tracked positions, and writing the result back out, plus a binary mask (`bwmask.png`). The course-provided source video isn't redistributed here.
 
 ## Running it
 
@@ -49,6 +47,6 @@ Each registration function prints the mean landmark distance before and after re
 
 ## What's mine vs. course-provided
 
-The assignment solutions are my own: the histogram flattening, the channel/Otsu segmentation, the spatial filter, the iterative and from-scratch Otsu thresholding, and the choices and tuning in the lab 4 registration functions. The lab 1 instructions PDF, the registration data set, `plot_image_and_points.m`, and the `VideoUtilities.m` tracking skeleton came with the course.
+The assignment solutions are my own: the histogram flattening, the channel/Otsu segmentation, the spatial filter, the iterative and from-scratch Otsu thresholding, and the choices and tuning in the lab 4 registration functions. The registration data set, `plot_image_and_points.m`, the `VideoUtilities.m` tracking skeleton, and the lab-4 source video came with the course.
 
-The MIT license covers the code I wrote. The course-provided instructions PDF, data, and skeleton files stay under their original terms.
+The MIT license covers the code I wrote. The course-provided data and skeleton files stay under their original terms.
